@@ -52,10 +52,10 @@ _printf '\x01' | dd of=td1 bs=1 seek=2155 count=1 conv=notrunc_
 ![GitHub Logo](/capture/success_emily.png)
 
 
-
+## TD2 : [Reverse engineering]
 ## Binwalk
 
-Installer qemu_system_arm
+Installer qemu_system_arm,
 Installer binwalk
 
 Après extraction des archives à l'aide de la commande ' binwalk -e nom_archive ' on trouve dans le fichier '/_vmlinuz-qemu-arm-2.6.20.extracted/_31B0.extracted/_E7E0.extracted/cpio-root/usr/local/share/directfb-examples/tux.png'_ la photo des pingouin .
@@ -68,6 +68,16 @@ Nous extrayons la photo du pingouin avec la commande suivante :
 
 ![GitHub Logo](/capture/extraction_png.png)
 
-3] Que peut faire un attaquant avec binwalk ?
+skip : adresse de l'image convertit en décimal + offset du nom de l'image convertit en décimal
+count: taille de l'image en décimal
 
-Permet de chercher, analyser et décompresser des fichiers binaires comme les firmwares. Il intègre plusieurs options permettant de reconnaître et extraire des formats standards dans les binaires (systèmes de fichiers, kernel, fichiers compressés/archivés, headers de fichiers connus...). De plus, il dispose de fonctionnalités permettant de faire des analyses d'entropie. Avec tous ces moyens, un attaquant peut faire du reverse sur n'importe quel binaire ou firmware pour extraire des données qui peuvent être sensibles.
+*Qu'est ce qui peut être intéressant d'un point de vue sécurité?*
+...
+
+*Essayez de patcher le fichier pour remplacer le pingouin par une autre image. Que ce passe-t-il?*
+
+J'ai essayé avec cette commande: dd skip=2984568 count=24656 if=black-cat-icon_36995.png of=E7E0 bs=1 conv=notrunc
+mais j'obtiens une erreur, je pense qu'il y a une sécurité qui nous permet pas de réécrire sur l'archive.
+
+## TD3 : [Exploit]
+##
