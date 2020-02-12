@@ -19,7 +19,7 @@ https://bitbucket.org/whitewand/2su_2020/src
 
 ## TD1 : [Reverse engineering]
 
-##Crack emily:
+## Crack emily:
 
 Mon nom de fichier est: td1
 - *file td1* nous donne le format sous lequel est stocké l'exécutable
@@ -53,6 +53,21 @@ _printf '\x01' | dd of=td1 bs=1 seek=2155 count=1 conv=notrunc_
 
 
 
-#binwalk
+## Binwalk
 
-modifier le pingouin par un chat
+Installer qemu_system_arm
+Installer binwalk
+
+Après extraction des archives à l'aide de la commande ' binwalk -e nom_archive ' on trouve dans le fichier '/_vmlinuz-qemu-arm-2.6.20.extracted/_31B0.extracted/_E7E0.extracted/cpio-root/usr/local/share/directfb-examples/tux.png'_ la photo des pingouin .
+
+![GitHub Logo](/capture/binwalk_png.png)
+
+Adresse de l'image des pingouins : 0x2D89DC
+
+Nous extrayons la photo du pingouin avec la commande suivante :
+
+![GitHub Logo](/capture/extraction_png.png)
+
+3] Que peut faire un attaquant avec binwalk ?
+
+Permet de chercher, analyser et décompresser des fichiers binaires comme les firmwares. Il intègre plusieurs options permettant de reconnaître et extraire des formats standards dans les binaires (systèmes de fichiers, kernel, fichiers compressés/archivés, headers de fichiers connus...). De plus, il dispose de fonctionnalités permettant de faire des analyses d'entropie. Avec tous ces moyens, un attaquant peut faire du reverse sur n'importe quel binaire ou firmware pour extraire des données qui peuvent être sensibles.

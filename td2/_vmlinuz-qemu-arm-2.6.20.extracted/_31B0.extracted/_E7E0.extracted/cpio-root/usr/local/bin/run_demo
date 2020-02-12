@@ -1,0 +1,34 @@
+#!/bin/sh
+# Running the DirectFB examples in a row
+
+df_andi &
+sleep 20
+killall df_andi
+
+df_dok &
+sleep 150
+killall df_dok
+
+df_fire &
+sleep 40
+killall df_fire
+
+df_input &
+sleep 20
+killall df_input
+
+df_knuckles &
+sleep 40
+killall df_knuckles
+
+df_neo &
+sleep 20
+killall df_neo
+
+df_palette &
+sleep 30
+killall df_palette
+
+df_window &
+sleep 60
+killall df_window

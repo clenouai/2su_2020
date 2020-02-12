@@ -1,0 +1,15 @@
+#!/bin/sh
+export PATH=/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin
+export LD_LIBRARY_PATH=/usr/local/lib:/lib:/usr/lib
+mount -t proc none /proc
+echo "+=====================================================+"
+echo "| Welcome to the DirectFB ARM Linux demo on Qemu      |"
+echo "|                                                     |"
+echo "| Built and shrunk by free-electrons.com              |"
+echo "| Run the below command to start the demo:            |"
+echo "| run_demo                                            |"
+echo "+=====================================================+"
+echo ""
+echo "Boot time:"
+cat /proc/uptime
+/bin/sh
