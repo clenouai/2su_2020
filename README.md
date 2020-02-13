@@ -83,8 +83,8 @@ mais j'obtiens une erreur, je pense qu'il y a une sécurité qui nous permet pas
 J'ai tenté d'exploiter un double free dans mon fichier double_free.c. Je déclare donc deux char* a et b, je fais un malloc sur a et b puis je free() a, puis b et encore une fois a() . Du coup quand je souhaite faire un malloc sur une autre variable char* d, d reçoit l'adresse de précédente de a puis je malloc() e qui obtient une autre adresse random. Puis en faisant un autre malloc d'une variable f, cette variable obtient encore l'addresse de a et donc est à la même adresse que d.  Maintenant, je ne sais pas ce que je peux exploiter avec ces deux variables qui ont la même adresse.
 
 Protection :
-Pour éviter l'exploitation de la *heap buffer overflow* il peut être intéressant d'utiliser un *canary* . Un canary est une donnée que l'on place après un buffer et dont on vérifie la valeur de temps en temps. Si la valeur n'est plus celle de départ alors c'est qu'il y a un buffer overflow et que quelqu'un ou quelque chose à écrit plus que ce qu'il pouvait dans le buffer.
+Pour éviter l'exploitation de la **heap buffer overflow** il peut être intéressant d'utiliser un **canary** . Un canary est une donnée que l'on place après un buffer et dont on vérifie la valeur de temps en temps. Si la valeur n'est plus celle de départ alors c'est qu'il y a un buffer overflow et que quelqu'un ou quelque chose à écrit plus que ce qu'il pouvait dans le buffer.
 
-Pour éviter l'exploitation de *double free*, il faut penser à *mettre à NULL le pointeur* que l'on a libéré, comme ça il ne contient plus l'ancienne adresse et si un deuxième free arrive sur ce même pointeur alors rien n'arrivera.
+Pour éviter l'exploitation de **double free**, il faut penser à **mettre à NULL le pointeur** que l'on a libéré, comme ça il ne contient plus l'ancienne adresse et si un deuxième free arrive sur ce même pointeur alors rien n'arrivera.
 _free(pointeur)
 pointeur = NULL;_
