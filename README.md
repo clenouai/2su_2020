@@ -8,7 +8,7 @@ https://bitbucket.org/whitewand/2su_2020/src
     
         - Dumper le hardward
         - Reverse engineering
-        - Tenter de casser la clé privé  (découverte des clés privés de Sony en observant la clé publique en 2011)
+        - Tenter de casser la clé privé  (découverte des clés privés de Sony en 2011)
         - Bit flip attack
       
     ### A quoi sert la chaine de confiance? Pourquoi est-elle nécessaire?
@@ -19,8 +19,8 @@ https://bitbucket.org/whitewand/2su_2020/src
     ### Décrire la méthode pour aborder la sécurité sur un produit embarqué. Pourquoi établir un modèle d'attaquant est-il important?
    
       1 - Réfléchir à quel produit ou service nous proposons et quelles informations il est nécessaire de protéger.
-      2- Qu'est ce que l'attaquant gagne en cassant notre système et de quelles compétences a t il besoin pour y arriver ?
-      3- Quel est le flot d'information (par où rentre l'information et par où elle sort) 
+      2- Quel est le flot d'information (par où rentre l'information et par où elle sort) 
+      3- Qu'est ce que l'attaquant gagne en cassant notre système et de quelles compétences a t il besoin pour y arriver ?
       4- Que se passe -t-il si notre système est compromis ? 
       5- Ajouter de la sécurité en conséquence.
       
