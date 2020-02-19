@@ -27,7 +27,7 @@ https://bitbucket.org/whitewand/2su_2020/src
       Etablir un modèle d'attaquant est important pour discerner comment une intrusion pour être orchestrée et quels élements de notre systèmes peuvent donc représenter une vulnérabilité pour notre produit embarqué.
       
     ### Trouver un moyen rapide de faire du debug embarqué (par exemple sur cible ARM)? Expliquer les avantages
-      L'émulateur ICE (In-Circuit Emulator). Les avantages de cette émulateur est qu'il vérifie le matériel comme le logiciel (avec du pas à pas et des points d'arrêt). Il permet aussi de tracer les activités du processeur.
+      L'émulateur ICE (In-Circuit Emulator). Les avantages de cet émulateur est qu'il vérifie le matériel comme le logiciel (avec du pas à pas et des points d'arrêt). Il permet aussi de tracer les activités du processeur.
       
     ### Lister les catégories de bug possibles et comment les exploiter et les défendre
         comment attaquer comment défendre
