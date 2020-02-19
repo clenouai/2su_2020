@@ -4,15 +4,34 @@ https://bitbucket.org/whitewand/2su_2020/src
 
 ##Questions
 
-    Quels sont les chemins d'attaque possibles sur la signature d'un système embarqué?
-    A quoi sert la chaine de confiance? Pourquoi est-elle nécessaire?
-    Décrire la méthode pour aborder la sécurité sur un produit embarqué. Pourquoi établir un modèle d'attaquant est-il important?
-      Commence par le flot d'information: 1 - produit/service 2- qu'est ce que l'attaquant gagne en cassant notre système  3- flot d'info (par ou on rentre) 4-
-    Trouver un moyen rapide de faire du debug embarqué (par exemple sur cible ARM)? Expliquer les avantages
+    ### Quels sont les chemins d'attaque possibles sur la signature d'un système embarqué?
+    
+        - Dump le hardward
+        - Reverse engineering
+        - Tenter de casser la clé privé  (découverte des clés privés de Sony en observant la clé publique en 2011)
+        - Bit flip attack
+      
+    ### A quoi sert la chaine de confiance? Pourquoi est-elle nécessaire?
+    
+        - La chaine de confiance est le chemin entre l'autorité de certification jusqu'à l'utilisateur en passant par le hardware comme le software. Il faut ainsi s'assurer que seul des hardwares et des softwares de confiance sont utilisés entre les deux entités. 
+        Cette chaine est nécessaire car si un des maillons entre l'autorité de certification et l'utilisateur est compromis alors toute la chaine est compromise. 
+        
+    ### Décrire la méthode pour aborder la sécurité sur un produit embarqué. Pourquoi établir un modèle d'attaquant est-il important?
+   
+      1 - Réfléchir à quel produit ou service nous proposons et quelles informations il est nécessaire de protéger.
+      2- Qu'est ce que l'attaquant gagne en cassant notre système et quels copétences a t il besoin ?
+      3- Quel est le flot d'information (par où rentre l'information et par où elle sort) 
+      4- Que se passe -t-il si notre système est compromis ? 
+      
+      Etablir un modèle d'attaquant est important pour discerner comment une intrusion pour être orchestrée et quels élements de notre systèmes peuvent donc représenter une vulnérabilité pour notre produit embarqué.
+      
+    ### Trouver un moyen rapide de faire du debug embarqué (par exemple sur cible ARM)? Expliquer les avantages
       emulation, qemu, etc    question ouverte
-    Lister les catégories de bug possibles et comment les exploiter et les défendre
+      
+    ### Lister les catégories de bug possibles et comment les exploiter et les défendre
         comment attaquer comment défendre
-    Quelles idées pour améliorer la sécurité en embarqué? (IA, Anti-debug, Obfuscation, Crypto ...) Choisissez une idée, chercher si elle existe et développer en quelques phrases quel avantage elle apporte et ses limites
+        
+    ### Quelles idées pour améliorer la sécurité en embarqué? (IA, Anti-debug, Obfuscation, Crypto ...) Choisissez une idée, chercher si elle existe et développer en quelques phrases quel avantage elle apporte et ses limites
 
 
 ## TD1 : [Reverse engineering]
