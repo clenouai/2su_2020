@@ -19,19 +19,22 @@ https://bitbucket.org/whitewand/2su_2020/src
     ### Décrire la méthode pour aborder la sécurité sur un produit embarqué. Pourquoi établir un modèle d'attaquant est-il important?
    
       1 - Réfléchir à quel produit ou service nous proposons et quelles informations il est nécessaire de protéger.
-      2- Qu'est ce que l'attaquant gagne en cassant notre système et quels copétences a t il besoin ?
+      2- Qu'est ce que l'attaquant gagne en cassant notre système et de quelles compétences a t il besoin pour y arriver ?
       3- Quel est le flot d'information (par où rentre l'information et par où elle sort) 
       4- Que se passe -t-il si notre système est compromis ? 
+      5- Ajouter de la sécurité en conséquence.
       
       Etablir un modèle d'attaquant est important pour discerner comment une intrusion pour être orchestrée et quels élements de notre systèmes peuvent donc représenter une vulnérabilité pour notre produit embarqué.
       
     ### Trouver un moyen rapide de faire du debug embarqué (par exemple sur cible ARM)? Expliquer les avantages
-      emulation, qemu, etc    question ouverte
+      L'émulateur ICE (In-Circuit Emulator). Les avantages de cette émulateur est qu'il vérifie le matériel comme le logiciel (avec du pas à pas et des points d'arrêt). Il permet aussi de tracer les activités du processeur.
       
     ### Lister les catégories de bug possibles et comment les exploiter et les défendre
         comment attaquer comment défendre
         
-    ### Quelles idées pour améliorer la sécurité en embarqué? (IA, Anti-debug, Obfuscation, Crypto ...) Choisissez une idée, chercher si elle existe et développer en quelques phrases quel avantage elle apporte et ses limites
+    ### Quelles idées pour améliorer la sécurité en embarqué? (IA, Anti-debug, Obfuscation, Crypto ...) Choisissez une idée, chercher si elle existe et développer en quelques phrases quel avantage elle apporte et ses limites:
+    L'obfuscation est un plus pour la sécurisation des codes sources. En effet, elle permet à un attaquant qui aurait le code bianire de ne pas remonter jusqu'au code source original. L'obfuscation permet de rendre inintelligibles le code source aussi bien pour un humain que pour une machine. Ca change, par exemple tous les noms des varaibles pas des nombres ou des lettres aleatoires. Ca enlève les commentaires du code, aisni que le déboguage. 
+    Les inconvénients sont donc que le débboguage ne sera plus disponible en version final du système et le temps d'exécution du code peut devenir plus long.
 
 
 ## TD1 : [Reverse engineering]
