@@ -30,11 +30,11 @@ https://bitbucket.org/whitewand/2su_2020/src
       L'émulateur ICE (In-Circuit Emulator). Les avantages de cet émulateur est qu'il vérifie le matériel comme le logiciel (avec du pas à pas et des points d'arrêt). Il permet aussi de tracer les activités du processeur.
       
     ### Lister les catégories de bug possibles et comment les exploiter et les défendre
-        comment attaquer comment défendre
+
         
     ### Quelles idées pour améliorer la sécurité en embarqué? (IA, Anti-debug, Obfuscation, Crypto ...) Choisissez une idée, chercher si elle existe et développer en quelques phrases quel avantage elle apporte et ses limites:
-    L'obfuscation est un plus pour la sécurisation des codes sources. En effet, elle permet à un attaquant qui aurait le code bianire de ne pas remonter jusqu'au code source original. L'obfuscation permet de rendre inintelligibles le code source aussi bien pour un humain que pour une machine. Ca change, par exemple tous les noms des varaibles pas des nombres ou des lettres aleatoires. Ca enlève les commentaires du code, aisni que le déboguage. 
-    Les inconvénients sont donc que le débboguage ne sera plus disponible en version final du système et le temps d'exécution du code peut devenir plus long.
+    L'obfuscation est un plus pour la sécurisation des codes sources. En effet, elle permet à un attaquant qui aurait le code binaire de ne pas remonter jusqu'au code source original. L'obfuscation permet de rendre inintelligible le code source aussi bien pour un humain que pour une machine. Ca change, par exemple, tous les noms des variables par des nombres ou des lettres aleatoires. Ca enlève les commentaires du code, ainsi que le déboguage. 
+    Les inconvénients sont donc que le déboguage ne sera plus disponible en version finale du système et le temps d'exécution du code peut devenir plus long.
 
 
 ## TD1 : [Reverse engineering]
