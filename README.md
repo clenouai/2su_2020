@@ -6,7 +6,7 @@ https://bitbucket.org/whitewand/2su_2020/src
 
     ### Quels sont les chemins d'attaque possibles sur la signature d'un système embarqué?
     
-        - Dump le hardward
+        - Dumper le hardward
         - Reverse engineering
         - Tenter de casser la clé privé  (découverte des clés privés de Sony en observant la clé publique en 2011)
         - Bit flip attack
