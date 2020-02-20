@@ -94,35 +94,42 @@ Adresse de l'image des pingouins : 0x2D89DC
 
 Nous extrayons la photo du pingouin avec la commande suivante :
 
+_dd skip=2984568 count=24656 if=E7E0 of=pingouin.png bs=1 conv=notrunc_
+
 ![extraction of tux](/capture/extraction_png.png)
 
-skip : adresse de l'image convertit en décimal + offset du nom de l'image convertit en décimal
-count: taille de l'image en décimal
+_skip_ : adresse de l'image convertit en décimal + offset du nom de l'image convertit en décimal
+
+_count_: taille de l'image en décimal
 
 *Qu'est ce qui peut être intéressant d'un point de vue sécurité?*
+
   Binwalk permet de voir s'il y a des fichiers compressés, des images, etc.
   L'attaquant peut voir, avec les options de décompression, des clés de chiffrement, des certificats et des bases de données.
   Cela peut permettre à des attaquants du faire du reverse facilement, d'extraire des données sensibles et d'y intégrer du code malveillant.
 
 *Essayez de patcher le fichier pour remplacer le pingouin par une autre image. Que ce passe-t-il?*
 
-J'ai essayé avec cette commande: dd skip=2984568 count=24656 if=black-cat-icon_36995.png of=E7E0 bs=1 conv=notrunc
-mais j'obtiens une erreur, je pense qu'il y a une sécurité qui nous permet pas de réécrire sur l'archive.
+J'ai essayé avec cette commande: _dd skip=2984568 count=24656 if=black-cat-icon_36995.png of=E7E0 bs=1 conv=notrunc_
+mais j'obtiens une erreur, je pense qu'il y a une sécurité qui ne nous permet pas de réécrire sur l'archive.
 
 ## TD3 : [Exploit]
-J'ai tenté d'exploiter un double free dans mon fichier double_free.c. Je déclare donc deux char* a et b, je fais un malloc sur a et b puis je free() a, puis b et encore une fois a() . Du coup quand je souhaite faire un malloc sur une autre variable char* d, d reçoit l'adresse de précédente de a puis je malloc() e qui obtient une autre adresse random. Puis en faisant un autre malloc d'une variable f, cette variable obtient encore l'addresse de a et donc est à la même adresse que d.  Maintenant, je ne sais pas ce que je peux exploiter avec ces deux variables qui ont la même adresse.
+J'ai tenté d'exploiter un double free dans mon fichier td3/double_free.c. Je déclare donc deux char* a et b, je fais un malloc sur a et b puis je free() a, puis b et encore une fois a() . Du coup, quand je souhaites faire un malloc sur une autre variable char* d, **d** reçoit l'adresse précédente de a puis je malloc() **e** qui obtient une autre adresse random. Puis, en faisant un autre malloc d'une variable **f**, cette variable obtient encore l'addresse de **a** et donc est à la même adresse que **d**.  Maintenant, je ne sais pas ce que je peux exploiter avec ces deux variables qui ont la même adresse.
 
 Protection :
 Pour éviter l'exploitation de la **heap buffer overflow** il peut être intéressant d'utiliser un **canary** . Un canary est une donnée que l'on place après un buffer et dont on vérifie la valeur de temps en temps. Si la valeur n'est plus celle de départ alors c'est qu'il y a un buffer overflow et que quelqu'un ou quelque chose à écrit plus que ce qu'il pouvait dans le buffer.
 
 Pour éviter l'exploitation de **double free**, il faut penser à **mettre à NULL le pointeur** que l'on a libéré, comme ça il ne contient plus l'ancienne adresse et si un deuxième free arrive sur ce même pointeur alors rien n'arrivera.
+
 _free(pointeur)
+
 pointeur = NULL;_
 
-## TD6 : [SIDE CHANNEL]
+## TD6 : [Side Channel]
 
-J'ai créé un fichier td6.c qui demande à l'utilisateur un mot de passe en argument et qui vérifie ensuite que c'est le bon, lettre par lettre.
+J'ai créé un fichier td6/td6.c qui demande à l'utilisateur un mot de passe en argument et qui vérifie ensuite que c'est le bon, lettre par lettre.
 Avec la commande linux **time**, je regarde le temps que passe le programme quand on lui donne un vrai mot de passe et quand on lui donne un mauvais mot de passe ou des morceaux du vrai mot de passe.
+
 ![time execution of programm](/capture/temps_calcul_fichier_auth_mdp.JPG)
 
 
