@@ -24,7 +24,7 @@ https://bitbucket.org/whitewand/2su_2020/src
       4- Que se passe -t-il si notre système est compromis ? 
       5- Ajouter de la sécurité en conséquence.
       
-      Etablir un modèle d'attaquant est important pour discerner comment une intrusion pour être orchestrée et quels élements de notre systèmes peuvent donc représenter une vulnérabilité pour notre produit embarqué.
+      Etablir un modèle d'attaquant est important pour discerner comment une intrusion pour être orchestrée et quels élements de notre système peuvent donc représenter une vulnérabilité pour notre produit embarqué.
       
     ### Trouver un moyen rapide de faire du debug embarqué (par exemple sur cible ARM)? Expliquer les avantages
       L'émulateur ICE (In-Circuit Emulator). Les avantages de cet émulateur est qu'il vérifie le matériel comme le logiciel (avec du pas à pas et des points d'arrêt). Il permet aussi de tracer les activités du processeur.
@@ -32,7 +32,8 @@ https://bitbucket.org/whitewand/2su_2020/src
     ### Lister les catégories de bug possibles et comment les exploiter et les défendre
 
         
-    ### Quelles idées pour améliorer la sécurité en embarqué? (IA, Anti-debug, Obfuscation, Crypto ...) Choisissez une idée, chercher si elle existe et développer en quelques phrases quel avantage elle apporte et ses limites:
+    ### Quelles idées pour améliorer la sécurité en embarqué? (IA, Anti-debug, Obfuscation, Crypto ...) Choisissez une idée, chercher si elle existe et développer en quelques phrases quel avantage elle apporte et ses limites.
+    
     L'obfuscation est un plus pour la sécurisation des codes sources. En effet, elle permet à un attaquant qui aurait le code binaire de ne pas remonter jusqu'au code source original. L'obfuscation permet de rendre inintelligible le code source aussi bien pour un humain que pour une machine. Ca change, par exemple, tous les noms des variables par des nombres ou des lettres aleatoires. Ca enlève les commentaires du code, ainsi que le déboguage. 
     Les inconvénients sont donc que le déboguage ne sera plus disponible en version finale du système et le temps d'exécution du code peut devenir plus long.
 
@@ -51,16 +52,16 @@ That's not correct!"
 
 On obtient en clair le mot de passe attendu ! Une obfuscation pour cacher les strings auraient été une bonne idée.
 
-- avec la commande *objdump*, on observe que la fonction main fait apelle à la fonction <is_valid>, et dans cette fonction on repère la condition qui va permettre de passer sans erreur.
+- avec la commande *objdump*, on observe que la fonction _main_ fait apelle à la fonction <is_valid>, et dans cette fonction on repère la condition qui va permettre de passer sans erreur.
 
 *861:   75 07                   jne    86a <is_valid+0x2a> (Offset dans le fichier : 0x86a)
 863:   b8 01 00 00 00          mov    $0x1,%eax
 868:   eb 05                   jmp    86f <is_valid+0x2f> (Offset dans le fichier : 0x86f)
 86a:   b8 00 00 00 00          mov    $0x0,%eax*
 
-on s'apperçoit que la valeur rentrée dans %eax, est le retour 1 ou 0 selon que la condition avant le 'jne' soit fausse ou vraie. **jne = jump if not equal** donc on suppose que si l'on passe dans jne on va à l'adresse 86a et le retour sera 0 (faux). Nous souhaitons donc modifier le code tel que la fonction <is_valid> retour 1 et donc met $0x01 dans %eax.
+on s'apperçoit que la valeur rentrée dans %eax, est le retour 1 ou 0 selon que la condition avant le 'jne' soit fausse ou vraie. **jne = jump if not equal** donc on suppose que si l'on passe dans _jne_ on va à l'adresse 86a et le retour sera 0 (faux). Nous souhaitons donc modifier le code tel que la fonction <is_valid> retour 1 et donc met $0x01 dans %eax.
 
-L'instruction a pour code machine :  b8 00 00 00 00 et l'adresse est 0x86a donc 2154 bytes. Hors nous voulons changer le byte numéro 2. Donc le code se trouve au **215ème** bytes.
+L'instruction a pour code machine :  b8 00 00 00 00 et l'adresse est 0x86a donc 2154 bytes. Hors nous voulons changer le deuxième byte. Donc le byte que nous souhaitons modifier se trouve au **2155ème** bytes.
 
 Retrouvons cette instruction avec la commande hexdump autour de l'adresse 86a:
 
@@ -71,6 +72,7 @@ _printf '\x01' | dd of=td1 bs=1 seek=2155 count=1 conv=notrunc_
 
 ![GitHub Logo](/capture/success_emily.png)
 
+Nous observons ensuite que peu importe le mot de passe que nous entrons la fonction renvoie toujours _That's correct_
 
 ## TD2 : [Reverse engineering]
 ## Binwalk
