@@ -110,3 +110,7 @@ Pour éviter l'exploitation de la **heap buffer overflow** il peut être intére
 Pour éviter l'exploitation de **double free**, il faut penser à **mettre à NULL le pointeur** que l'on a libéré, comme ça il ne contient plus l'ancienne adresse et si un deuxième free arrive sur ce même pointeur alors rien n'arrivera.
 _free(pointeur)
 pointeur = NULL;_
+
+## TD6 : [SIDE CHANNEL]
+
+![GitHub Logo](/capture/temps_calcul_fichier_auth_mdp.jpg)
