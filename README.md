@@ -113,4 +113,4 @@ pointeur = NULL;_
 
 ## TD6 : [SIDE CHANNEL]
 
-![GitHub Logo](/capture/temps_calcul_fichier_auth_mdp.jpg)
+![GitHub Logo](/capture/temps_calcul_fichier_auth_mdp.JPG)
