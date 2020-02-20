@@ -55,8 +55,11 @@ On obtient en clair le mot de passe attendu ! Une obfuscation pour cacher les st
 - avec la commande *objdump*, on observe que la fonction _main_ fait apelle à la fonction <is_valid>, et dans cette fonction on repère la condition qui va permettre de passer sans erreur.
 
 *861:   75 07                   jne    86a <is_valid+0x2a> (Offset dans le fichier : 0x86a)
+
 863:   b8 01 00 00 00          mov    $0x1,%eax
+
 868:   eb 05                   jmp    86f <is_valid+0x2f> (Offset dans le fichier : 0x86f)
+
 86a:   b8 00 00 00 00          mov    $0x0,%eax*
 
 on s'apperçoit que la valeur rentrée dans %eax, est le retour 1 ou 0 selon que la condition avant le 'jne' soit fausse ou vraie. **jne = jump if not equal** donc on suppose que si l'on passe dans _jne_ on va à l'adresse 86a et le retour sera 0 (faux). Nous souhaitons donc modifier le code tel que la fonction <is_valid> retour 1 et donc met $0x01 dans %eax.
@@ -70,7 +73,7 @@ _00000860  c0 75 07 b8 01 00 00 00  eb 05 **b8 00 00 00 00** c9  |.u............
 La commande pour modifier le byte adéquate dans le binaire est :
 _printf '\x01' | dd of=td1 bs=1 seek=2155 count=1 conv=notrunc_
 
-![GitHub Logo](/capture/success_emily.png)
+![Emily code success](/capture/success_emily.png)
 
 Nous observons ensuite que peu importe le mot de passe que nous entrons la fonction renvoie toujours _That's correct_
 
@@ -82,13 +85,13 @@ Installer binwalk
 
 Après extraction des archives à l'aide de la commande ' binwalk -e nom_archive ' on trouve dans le fichier '/_vmlinuz-qemu-arm-2.6.20.extracted/_31B0.extracted/_E7E0.extracted/cpio-root/usr/local/share/directfb-examples/tux.png'_ la photo des pingouin .
 
-![GitHub Logo](/capture/binwalk_png.png)
+![find tux](/capture/binwalk_png.png)
 
 Adresse de l'image des pingouins : 0x2D89DC
 
 Nous extrayons la photo du pingouin avec la commande suivante :
 
-![GitHub Logo](/capture/extraction_png.png)
+![extraction of tux](/capture/extraction_png.png)
 
 skip : adresse de l'image convertit en décimal + offset du nom de l'image convertit en décimal
 count: taille de l'image en décimal
@@ -117,7 +120,7 @@ pointeur = NULL;_
 
 J'ai créé un fichier td6.c qui demande à l'utilisateur un mot de passe en argument et qui vérifie ensuite que c'est le bon, lettre par lettre.
 Avec la commande linux **time**, je regarde le temps que passe le programme quand on lui donne un vrai mot de passe et quand on lui donne un mauvais mot de passe ou des morceaux du vrai mot de passe.
-![GitHub Logo](/capture/temps_calcul_fichier_auth_mdp.JPG)
+![time execution of programm](/capture/temps_calcul_fichier_auth_mdp.JPG)
 
 
 On remarque que le système passe plus de temps si on lui donne le vrai mot de passe. En effet, il doit passer dans toutes les boucles _if_ avant de retourner alors qu'avec un mauvais mot de passe, il sort du programme dès le premier _if_.
