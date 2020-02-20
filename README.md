@@ -80,10 +80,13 @@ Nous observons ensuite que peu importe le mot de passe que nous entrons la fonct
 ## TD2 : [Reverse engineering]
 ## Binwalk
 
+Commandes nécessaires:
+
 Installer qemu_system_arm,
+
 Installer binwalk
 
-Après extraction des archives à l'aide de la commande ' binwalk -e nom_archive ' on trouve dans le fichier '/_vmlinuz-qemu-arm-2.6.20.extracted/_31B0.extracted/_E7E0.extracted/cpio-root/usr/local/share/directfb-examples/tux.png'_ la photo des pingouin .
+Après extraction des archives à l'aide de la commande ' binwalk -e nom_archive ' on trouve dans le fichier '/_vmlinuz-qemu-arm-2.6.20.extracted/_31B0.extracted/_E7E0.extracted/cpio-root/usr/local/share/directfb-examples/tux.png'_ la photo des pingouins.
 
 ![find tux](/capture/binwalk_png.png)
 
