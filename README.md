@@ -115,7 +115,7 @@ pointeur = NULL;_
 
 J'ai créé un fichier td6.c qui demande à l'utilisateur un mot de passe en argument et qui vérifie ensuite que c'est le bon, lettre par lettre.
 Avec la commande linux **time**, je regarde le temps que passe le programme quand on lui donne un vrai mot de passe et quand on lui donne un mauvais mot de passe ou des morceaux du vrai mot de passe.
-![GitHub Logo](/capture/temps_calcul_fichier_auth_mdp.JPG)
+
 
 On remarque que le système passe plus de temps si on lui donne le vrai mot de passe. En effet, il doit passer dans toutes les boucles _if_ avant de retourner alors qu'avec un mauvais mot de passe, il sort du programme dès le premier _if_.
 Ainsi, l'attaquant peut deviner au fur et à mesure de ses tests si la première lettre de son mot de pase est bonne ou la première et la deuxième ainsi de suite car le temps d'exectution du programme va augmenter au fur et à mesure que les bonnes lettres du mot de passe sont entrées.
